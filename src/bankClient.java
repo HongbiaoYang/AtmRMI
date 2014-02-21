@@ -92,8 +92,6 @@ public class bankClient  {
 
                   return;
               }
-
-              System.out.println("code="+err);
               System.out.printf("Successfully transfer $%d from account %d to account %d!\n", amount, accountFrom, accountTo);
 
           } catch(NumberFormatException e)
