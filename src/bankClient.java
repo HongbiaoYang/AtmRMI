@@ -66,7 +66,7 @@ public class bankClient  {
                   return;
               }
 
-              System.out.printf("Successfully withdraw $%d from account %d!", amount, account);
+              System.out.printf("Successfully withdraw $%d from account %d!\n", amount, account);
 
           } catch(NumberFormatException e)
           {
@@ -154,7 +154,7 @@ public class bankClient  {
             System.out.printf("No such user or account, %d!\n", account);
         }
         else if (err == CODE.NO_SUFFICIENT_FUND) {
-            System.out.printf("No sufficient fund in account %d!", account);
+            System.out.printf("No sufficient fund in account %d!\n", account);
         }
         else {
             // if other situation happens
@@ -171,7 +171,7 @@ public class bankClient  {
             System.out.printf("No such user or account, %d!\n", account2);
         }
         else if (err == CODE.NO_SUFFICIENT_FUND) {
-            System.out.printf("No sufficient fund in account %d!", account1);
+            System.out.printf("No sufficient fund in account %d!\n", account1);
         }
         else {
             // if other situation happens
