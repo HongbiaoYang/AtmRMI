@@ -12,6 +12,7 @@ public class bank extends UnicastRemoteObject implements bankInterface {
   private int amt;
 
   private final String dataPath = "src//bankdata.txt";
+  private final String dataPathIDE = "bankdata.txt";
   private Hashtable<Integer, Integer> bankItems;
 
 
@@ -20,7 +21,12 @@ public class bank extends UnicastRemoteObject implements bankInterface {
     acnt = account;
 	amt = 0;
 
-	bankItems = loadData(dataPath);
+
+    // load the dataPath first. If no file, search another path
+    // This difference is because of the IDE defines a different root directory
+	if ((bankItems = loadData(dataPath)) == null) {
+        bankItems = loadData((dataPathIDE));
+    }
 
 	// PrintHash(bankItems);
 
@@ -114,6 +120,7 @@ public class bank extends UnicastRemoteObject implements bankInterface {
 
 
 	   try{
+
 	     FileReader read = new FileReader(path);
 	     BufferedReader br = new BufferedReader(read);
 	     String row;
@@ -134,7 +141,9 @@ public class bank extends UnicastRemoteObject implements bankInterface {
 	    }
 	   } catch(FileNotFoundException  e)
 	   {
-		   System.out.println("Error:"+e.toString());
+           // file not file, return null and don't print out error message
+           // Try another path
+           return null;
 	   } catch(IOException  e)
 	   {
 		   System.out.println("Error:"+e.toString());

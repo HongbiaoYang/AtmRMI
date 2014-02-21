@@ -40,7 +40,7 @@ public class bankClient  {
                 return;
             }
 
-            System.out.printf("Successfully deposit $%d to account %d!", amount, account);
+            System.out.printf("Successfully deposit $%d to account %d!\n", amount, account);
 
 		  } catch(NumberFormatException e)
 		  {
