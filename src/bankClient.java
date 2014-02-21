@@ -93,7 +93,8 @@ public class bankClient  {
                   return;
               }
 
-              System.out.printf("Successfully transfer $%d from account %d to account %d!", amount, accountFrom, accountTo);
+              System.out.println("code="+err);
+              System.out.printf("Successfully transfer $%d from account %d to account %d!\n", amount, accountFrom, accountTo);
 
           } catch(NumberFormatException e)
           {
@@ -117,7 +118,7 @@ public class bankClient  {
                   return;
               }
 
-              System.out.printf("The current balance of user %d is $%d", account, amount);
+              System.out.printf("The current balance of user %d is $%d\n", account, amount);
 
           } catch(NumberFormatException e)
           {

@@ -79,28 +79,34 @@ public class bank extends UnicastRemoteObject implements bankInterface {
 
        Integer fund1 = bankItems.get(acnt1);
        Integer fund2 = bankItems.get(acnt2);
-       if (fund1 != null && fund2 != null ) {
-           if (fund1.intValue() < amt) {
-               return CODE.NO_SUFFICIENT_FUND;
-           }
 
-           System.out.printf("Account(%d):%d\t", acnt1, fund1);
-           System.out.printf("Account(%d):%d\n", acnt2, fund2);
-
-           fund1 = new Integer(fund1.intValue() - amt);
-           fund2 = new Integer(fund2.intValue() + amt);
-           bankItems.put(new Integer(acnt1), fund1);
-           bankItems.put(new Integer(acnt2), fund2);
-
-           System.out.printf("Account(%d):%d\t", acnt1, fund1);
-           System.out.printf("Account(%d):%d\n", acnt2, fund2);
-
-           // save the change back to the database
-           saveData(bankItems, dataPath);
-           return CODE.OK;
+       if (fund1 == null) {
+           return CODE.UNKNOWN_ACCOUNT;
+       }
+       else if (fund2 == null) {
+           return CODE.UNKNOWN_ACCOUNT2;
        }
 
-	   return CODE.OK;
+       // account exists
+       if (fund1.intValue() < amt) {
+           return CODE.NO_SUFFICIENT_FUND;
+       }
+
+       System.out.printf("Account(%d):%d\t", acnt1, fund1);
+       System.out.printf("Account(%d):%d\n", acnt2, fund2);
+
+       fund1 = new Integer(fund1.intValue() - amt);
+       fund2 = new Integer(fund2.intValue() + amt);
+       bankItems.put(new Integer(acnt1), fund1);
+       bankItems.put(new Integer(acnt2), fund2);
+
+       System.out.printf("Account(%d):%d\t", acnt1, fund1);
+       System.out.printf("Account(%d):%d\n", acnt2, fund2);
+
+       // save the change back to the database
+       saveData(bankItems, dataPath);
+       return CODE.OK;
+
    }
 
    public int inquiry(int acnt) throws RemoteException {
