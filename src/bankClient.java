@@ -44,7 +44,7 @@ public class bankClient  {
 
 		  } catch(NumberFormatException e)
 		  {
-			  System.out.println("Error:"+e.toString());
+			  System.out.println("Input Error: Please input integer amount only!");
 			  return;
 		  }
 	  }
@@ -70,7 +70,7 @@ public class bankClient  {
 
           } catch(NumberFormatException e)
           {
-              System.out.println("Error:"+e.toString());
+              System.out.println("Input Error: Please input integer amount only!");
               return;
           }
 	  }
@@ -96,7 +96,7 @@ public class bankClient  {
 
           } catch(NumberFormatException e)
           {
-              System.out.println("Error:"+e.toString());
+              System.out.println("Input Error: Please input integer amount only!");
               return;
           }
 	  }
@@ -120,7 +120,7 @@ public class bankClient  {
 
           } catch(NumberFormatException e)
           {
-              System.out.println("Error:"+e.toString());
+              System.out.println("Input Error: Please input integer amount only!");
               return;
           }
 
