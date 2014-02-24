@@ -32,6 +32,10 @@ public class bankClient  {
 		  {
 			int account = Integer.parseInt(argv[2]);
 			int amount = Integer.parseInt(argv[3]);
+
+            if (! checkAmount(amount))
+                return;
+
 	
             CODE err = bank.deposit(account, amount);
             if (err != CODE.OK) {
@@ -59,6 +63,10 @@ public class bankClient  {
               int account = Integer.parseInt(argv[2]);
               int amount = Integer.parseInt(argv[3]);
 
+              if (! checkAmount(amount))
+                return;
+
+
               CODE err = bank.withdraw(account, amount);
               if (err != CODE.OK) {
                   readErrorCode(err, account);
@@ -85,6 +93,9 @@ public class bankClient  {
               int accountFrom = Integer.parseInt(argv[2]);
               int accountTo = Integer.parseInt(argv[3]);
               int amount = Integer.parseInt(argv[4]);
+
+              if (! checkAmount(amount))
+                  return;
 
               CODE err = bank.transfer(accountFrom, accountTo, amount);
               if (err != CODE.OK) {
@@ -140,6 +151,16 @@ public class bankClient  {
       System.out.println ("bankClient exception: " + e);
     }
   }
+
+    private static boolean checkAmount(int amount) {
+        if (amount <= 0) {
+            System.out.println("Illegal amount! Please make sure your amount is positive!");
+            System.out.println("Amount="+amount);
+            return false;
+        }
+
+        return true;
+    }
 
     // for method inquiry, only one possible error
     private static void readErrorCode(int account) {
