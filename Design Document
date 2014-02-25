@@ -1,2 +1,0 @@
-This project includes two parts, the server program and the client program.
-The server will define some functions that will actually perform the transactions, and exports those functions as APIs for others via the Internet. 
