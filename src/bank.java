@@ -187,7 +187,7 @@ public class bank extends UnicastRemoteObject implements bankInterface {
             fw.flush();
             fw.close();
 
-        }catch (FileNotFoundException e) {
+        }catch (IOException e) {
             System.out.println("Err=" + e.toString());
         } catch(NoSuchElementException e)
         {
