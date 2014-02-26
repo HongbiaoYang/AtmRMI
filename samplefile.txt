@@ -1,0 +1,139 @@
+We tested our program throughly. The test cases include:
+1. Establish the server  
+	When we establish the server, we type on the command line:
+	java bankServer 6666
+	Then the server is established and shows "Server is running"
+
+2. Test if the client can connect with the server. When the host name or port number is wrong, the program should be able to output error message.
+
+3. Test if the operation of inquiry, deposit, withdraw, and transfer perform correctly. For example, if the program can correctly output the account balance when client does an "inquiry" operation, if the program can correctly withdraw, transfer, or deposit the money in the account when client does a "withdraw", "transfer", or "deposit" operation. 
+
+4. Test strange scenario. For example, the requested user account does not exist when user wants to deposit, withdraw, and transfer money, or get the account balance. The program will output "No such user or account, 1290!".
+
+5. When the amount of money is less than the withdrawal or transfer amount, the program will output "No sufficeint fund in account 1009!".
+
+6. If the client's command does not follow the specified format, the program will signal the correct command line format according the client's operation.
+
+7. Test that negative money amount is not allowed. When the client want to deposit, transfer, or withdraw negative amount of money, the program will ouput "Illegal amount! Please make sure your amount is positive! Amount= -4".
+
+
+We did 56 tests on the client side as shown below:
+
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1000
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1209 200
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1000 200
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1001 50
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1002 3000
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1002 10
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1002
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1009 10001
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1009
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1002 1003 10
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1000 1005 200
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1000
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1005
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1008
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1008 1010 9001
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1008 10
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1008 1010 9009
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1008
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1010
+java bankClient hydra14.eecs.utk.edu:6666 transfer 990 1010 9009
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1007 1011 9009
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 100
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 999
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1011
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1002 1003 0
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1003 1004 1000
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1004 1008 3000
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1004
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1008
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1007 200
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1007
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1007 0
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1007 200
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1009 1006 5000
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1009 10
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1009
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1007 2.35
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1007
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1003 1006 3000.01
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1003 1006 1990.01
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1003
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1006
+java bankClient hydra14.eecs.utk.edu:6666 deposit 1000 -4
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1006 -1000
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1009 1006 -10
+java bankClient hydra14.eecs.utk.edu:6666 inquiry 1000 20
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1003 1006
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1003
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1006
+java bankClient hydra14.eecs.utk.edu:6666 withdraw 1006 1200 500
+java bankClient hydra14.eecs.utk.edu:6666 inquiry
+java bankClient hydra14.eecs.utk.edu:6666 withdraw
+java bankClient hydra14.eecs.utk.edu:6666 deposit
+java bankClient hydra14.eecs.utk.edu:6666 transfer 1009 1006 10 20
+java bankClient hydra14.eecs.utk.edu:4000 inquiry 1000
+java bankClient hydra10.eecs.utk.edu:6666 inquiry 1000
+
+
+
+Our project past all the tests above and the output is below:
+
+The current balance of user 1000 is $1000
+No such user or account, 1290!
+Successfully deposit $200 to account 1000!
+Successfully withdraw $50 from account 1001!
+Successfully withdraw $3000 from account 1002!
+No sufficient fund in account 1002!
+The current balance of user 1002 is $0
+No sufficient fund in account 1009!
+The current balance of user 1009 is $10000
+No sufficient fund in account 1002!
+Successfully transfer $200 from account 1000 to account 1005!
+The current balance of user 1000 is $1000
+The current balance of user 1005 is $6200
+The current balance of user 1008 is $9000
+No sufficient fund in account 1008!
+Successfully deposit $10 to account 1008!
+Successfully transfer $9009 from account 1008 to 1010!
+The current balance of user 1008 is $1
+The current balance of user 1010 is $9009
+No such user or account, 990!
+No such user or account, 1011!
+No such user or account, 100!
+Usage: java bankClient host:port withdraw account amount
+No such user or account, 1011!
+Illegal amount! Please make sure your amount is positive! Amount=0
+Successfully transfer $1000 from account 1003 to 1004!
+Successfully transfer $3000 from account 1004 to 1008!
+The current balance of user 1004 is $3000
+The current balance of user 1008 is $3001
+Successfully deposit $200 to account 1007!
+The current balance of user 1007 is $8200
+Illegal amount! Please make sure your amount is positive! Amount=0
+Successfully deposit $200 to account 1007!
+Successfully transfer $5000 from account 1009 to 1006!
+Successfully deposit $10 to account 1009!
+The current balance of user 1009 is $5010
+Input Error: Please input integer amount only!
+The current balance of user 1007 is $8400
+Input Error: Please input integer amount only!
+Input Error: Please input integer amount only!
+The current balance of user 1003 is $3000
+The current balance of user 1006 is $12000
+Illegal amount! Please make sure your amount is positive! Amount=-4
+Illegal amount! Please make sure your amount is positive! Amount=-1000
+Illegal amount! Please make sure your amount is positive! Amount=-10
+Usage: java bankClient host:port inquiry account
+Usage: java bankClient host:port transfer From To amount
+Usage: java bankClient host:port transfer From To amount
+Usage: java bankClient host:port withdraw account amount
+Usage: java bankClient host:port withdraw account amount
+Usage: java bankClient host:port inquiry account
+Usage: java bankClient host:port withdraw account amount
+Usage: java bankClient host:port deposit account amount
+Usage: java bankClient host:port transfer From To amount
+bankClient exception: java.rmi.ConnectException: Connection refused to host: hydra14.eecs.utk.edu; nested exception is: java.net.ConnectException: Connection refused
+"bankClient exception: java.rmi.ConnectException: Connection refused to host: hydra10.eecs.utk.edu; nested exception is: java.net.ConnectException: Connection refused
+
